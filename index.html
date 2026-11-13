@@ -1,228 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2025 Global Tax Performance Index</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            margin: 0; 
-            padding: 20px; 
-            background-color: #f5f5f5; 
-            color: #333; 
-            font-size: 16px; 
-        }
-        .header {
-            background: linear-gradient(90deg, #2c3e50, #3498db);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .logo {
-            margin-right: 10px;
-            font-size: 1.5em;
-            color: white;
-        }
-        .logo i { margin-right: 5px; }
-        h1 { 
-            text-align: center; 
-            color: white; 
-            margin: 0; 
-            font-size: 2em; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 2px;
-        }
-        p.subtitle { 
-            text-align: center; 
-            font-style: italic; 
-            color: #ecf0f1; 
-            margin: 5px 0 20px; 
-            font-size: 1em; 
-            width: 100%;
-        }
-        .table-container { 
-            overflow-x: auto; 
-            margin-bottom: 20px; 
-        }
-        table { 
-            width: 100%; 
-            min-width: 600px; 
-            margin: 0 auto; 
-            border-collapse: collapse; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-        }
-        th, td { border: 1px solid #ddd; padding: 12px; text-align: center; }
-        th { background-color: #3498db; color: white; font-weight: bold; cursor: pointer; }
-        th:hover { background-color: #2980b9; }
-        tr:nth-child(even) { background-color: #ecf0f1; }
-        tr:hover { background-color: #dfe6e9; }
-        .green { background-color: #2ecc71; }
-        .yellow { background-color: #f1c40f; }
-        .orange { background-color: #e67e22; }
-        .red { background-color: #e74c3c; }
-        td img { 
-            width: 16px; 
-            height: 12px; 
-            margin-right: 5px; 
-            vertical-align: middle; 
-        }
-        /* Mobile adjustments */
-        @media (max-width: 600px) {
-            body { padding: 10px; }
-            .header { padding: 15px; border-radius: 5px; }
-            .logo { font-size: 1.2em; margin-right: 8px; }
-            h1 { font-size: 1.2em; letter-spacing: 1px; }
-            p.subtitle { font-size: 0.9em; }
-            table { font-size: 0.8em; }
-            th, td { padding: 8px; }
-            .table-container { margin-bottom: 10px; }
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GTPI 2026 Preview: explore tax-to-GDP, human development and government effectiveness across 50 economies. Compare countries and test the ranking methodology.">
+  <meta name="theme-color" content="#0a1422">
+  <title>GTPI 2026 Preview | Global Tax Performance Index</title>
+  <style>
+    :root { color-scheme: dark; --page:#091321; --page2:#0c1928; --surface:#101f30; --surface2:#142639; --surface3:#1a3044; --line:#284054; --text:#f2f8fa; --muted:#a3b8c6; --low:#7792a6; --accent:#67e8c9; --accent2:#b9fff0; --blue:#76aef5; --gold:#ffd38d; --red:#f1a4a3; --radius:16px; --shadow:0 20px 70px rgba(0,0,0,.20); }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; scroll-padding-top:105px; }
+    body { margin:0; background:radial-gradient(ellipse 90% 20% at 82% 5%, #163b4d 0%, transparent 72%), linear-gradient(#0a1522,#0a1421 500px,#0b1725); color:var(--text); font:15px/1.58 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif; }
+    a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+    button,select,input { font:inherit; }
+    button { cursor:pointer; }
+    button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+    .wrap { width:min(1200px,calc(100% - 48px)); margin:0 auto; }
+    .topbar { background:rgba(9,19,32,.93); border-bottom:1px solid #25374a; position:sticky;top:0;z-index:30;backdrop-filter:blur(18px); }
+    .topbar-inner { display:flex;justify-content:space-between;align-items:center;gap:18px;min-height:74px; }
+    .brand { display:flex; align-items:center;gap:12px;text-decoration:none;color:var(--text); }
+    .brand:hover { text-decoration:none; }
+    .brand-mark { display:grid;place-items:center;width:40px;height:40px;border:1px solid #5be8c6;border-radius:12px;background:linear-gradient(145deg,#173d48,#132a39);color:var(--accent);font-size:20px;font-weight:900; }
+    .brand-name { font-size:19px; font-weight:850; letter-spacing:-.8px;line-height:1; }
+    .brand-caption { display:block; color:var(--muted);font-size:10px;font-weight:700;letter-spacing:1.65px;text-transform:uppercase;margin-top:5px; }
+    nav { display:flex; gap:29px;align-items:center; } nav a {color:var(--muted);font-size:13px;font-weight:650;} nav a:hover {color:var(--text);}
+    .nav-status {border:1px solid #356e65;border-radius:999px;color:var(--accent);padding:6px 12px;background:#15332f;font-size:11px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;white-space:nowrap;}
+    .release-banner { background:linear-gradient(100deg,#202b2c,#202d37); border-bottom:1px solid #574f35; }
+    .release-inner { padding:11px 0;display:flex;align-items:center;gap:12px;justify-content:center;flex-wrap:wrap;text-align:center;color:#e2d7be;font-size:12px; }
+    .release-inner strong {color:var(--gold);font-size:11px;letter-spacing:1px;white-space:nowrap;text-transform:uppercase;}
+    .release-sep {color:#867d67;}
+    .hero { display:grid;grid-template-columns:1.4fr .85fr;gap:42px;align-items:center;padding:73px 0 36px; }
+    .eyebrow { color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-weight:850;font-size:11px; }
+    h1 {font-size:clamp(38px,5.2vw,68px);line-height:1.08;letter-spacing:-3.5px;max-width:720px;margin:17px 0 19px;font-weight:800;}
+    h1 em { font-style:normal;color:var(--accent); }
+    .hero-copy {color:#bdced7;font-size:16px;line-height:1.8;max-width:640px;margin:0 0 25px;}
+    .hero-actions {display:flex;gap:10px;flex-wrap:wrap;}
+    .btn {display:inline-flex;justify-content:center;align-items:center;gap:9px;padding:11px 18px;border-radius:10px;border:1px solid #355266;background:#182d40;color:var(--text);font-weight:750;font-size:13px;text-decoration:none;white-space:nowrap;}
+    .btn:hover {border-color:#73b9b2;text-decoration:none;background:#213e50;}
+    .btn-primary {color:#052421;background:var(--accent);border-color:var(--accent);}
+    .btn-primary:hover {background:#a8ffea;color:#052421;}
+    .snapshot {background:linear-gradient(150deg,#183143,#112231);border:1px solid #32536a;box-shadow:var(--shadow);padding:24px 27px;border-radius:var(--radius);position:relative;overflow:hidden;}
+    .snapshot:before {content:"";width:190px;height:190px;border-radius:50%;position:absolute;right:-65px;top:-75px;opacity:.28;background:radial-gradient(circle,#2dbca5,transparent 67%);pointer-events:none;}
+    .snapshot-top {display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11px;font-weight:800;color:#b2c7d3;letter-spacing:1px;text-transform:uppercase;position:relative;}
+    .snapshot-badge {font-size:10px;color:var(--accent);background:#1c493e;border-radius:999px;padding:4px 9px;letter-spacing:.5px;}
+    .snapshot strong.big {display:block;margin-top:13px;font-size:43px;letter-spacing:-2px;font-weight:850;line-height:1.2;position:relative;}
+    .snapshot p {margin:6px 0 17px;color:var(--muted);font-size:13px;position:relative;}
+    .snapshot-list {display:grid;gap:11px;border-top:1px solid #2e495d;padding-top:15px;position:relative;}
+    .snapshot-line {display:flex;align-items:center;justify-content:space-between;gap:15px;font-size:12px;}
+    .snapshot-line span {color:var(--muted)} .snapshot-line b {color:#e3f5f6;}
+    .stats {display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0 69px;}
+    .stat {border:1px solid #273f51;background:#0e1e2c;border-radius:14px;padding:17px 20px;}
+    .stat small {display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:1.1px;font-weight:750;}
+    .stat b {display:block;font-size:22px;margin:6px 0 3px;letter-spacing:-.5px;}
+    .stat span {color:#7998ab;font-size:11px;}
+    section {margin-bottom:63px;}
+    .section-top {display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:19px;flex-wrap:wrap;}
+    .kicker {color:var(--accent);font-size:11px;font-weight:850;letter-spacing:1.8px;text-transform:uppercase;margin-bottom:6px;}
+    h2 {font-size:clamp(24px,3vw,31px);margin:0;line-height:1.17;letter-spacing:-1px;}
+    .section-description {margin:10px 0 0;color:var(--muted);font-size:13px;max-width:710px;}
+    .panel {background:#102032;border:1px solid #2a4153;border-radius:var(--radius);overflow:hidden;}
+    .panel-pad {padding:24px;}
+    .mode-layout {display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;margin-bottom:20px;}
+    .segmented {display:inline-flex;gap:3px;border:1px solid #345163;background:#0a1827;padding:4px;border-radius:10px;}
+    .segmented button {font-size:12px;font-weight:750;border:0;border-radius:7px;background:transparent;color:#95acbb;padding:8px 13px;white-space:nowrap;}
+    .segmented button[aria-pressed="true"] {background:#245e57;color:#bdfff0;}
+    .weight-wrap {display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+    .weight-wrap label {font-size:12px;font-weight:700;color:var(--muted);}
+    .weight-wrap input {accent-color:var(--accent);width:170px;}
+    .weight-wrap strong {color:var(--accent);font-size:13px;min-width:85px;}
+    .weight-wrap.disabled {opacity:.4;}
+    .quality-strip {border:1px solid #695536;background:#302b26;color:#ead5ac;border-radius:10px;padding:13px 16px;display:flex;gap:12px;align-items:flex-start;font-size:12px;line-height:1.6;}
+    .quality-strip svg {flex:none;color:#ffd38d;margin-top:1px;}
+    .quality-strip strong {color:#ffdf9e;}
+    .chart-summary {display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;gap:10px;flex-wrap:wrap;}
+    .chart-summary h3 {font-size:16px;letter-spacing:-.4px;margin:0;}
+    .tiny-hint {font-size:11px;color:var(--low);}
+    .scatter {margin-top:18px;border:1px solid #284358;border-radius:12px;padding:17px;background:linear-gradient(#10273a,#0b1b2c);}
+    .scatter svg {display:block;width:100%;height:auto;max-height:400px;overflow:visible;}
+    .scatter-caption {display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#829fb0;font-size:11px;padding:1px 4px 4px;}
+    .scatter .gridline {stroke:#315064;stroke-width:1;opacity:.65;stroke-dasharray:3 6;}
+    .scatter .axis-text {fill:#9bb4c2;font:12px system-ui,sans-serif;}
+    .scatter .axis-label {fill:#b7d0d9;font:13px system-ui,sans-serif;font-weight:600;}
+    .scatter .dot {fill:#5ae2c1;stroke:#0c2431;stroke-width:2;opacity:.84;cursor:pointer;transition:opacity .15s,fill .15s;}
+    .scatter .dot:hover,.scatter .dot:focus {fill:#fff0b3;opacity:1;stroke:#e0bd66;stroke-width:3;outline:none;}
+    .scatter .dot.selected {fill:#ffd38d;opacity:1;stroke:#ffecbb;stroke-width:2.5;}
+    .scatter .plot-label {fill:#dfedf1;font:11px system-ui,sans-serif;font-weight:700;paint-order:stroke;stroke:#112b3e;stroke-width:4;}
+    .table-tools {padding:17px 19px;display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:12px;border-bottom:1px solid var(--line);}
+    .searchbox {display:flex;align-items:center;gap:9px;border:1px solid #345369;background:#0c1b2b;border-radius:10px;padding:0 12px;flex:1;min-width:190px;max-width:345px;}
+    .searchbox svg {color:#92a7b7;flex:none;}
+    .searchbox input {background:transparent;border:0;color:var(--text);height:42px;outline:none;width:100%;font-size:13px;}
+    .searchbox input::placeholder {color:#788da0;}
+    .select {background:#0e2131;border:1px solid #38556b;border-radius:9px;color:var(--text);padding:10px 12px;min-height:40px;font-size:12px;max-width:100%;}
+    .table-actions {display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+    .table-wrap {overflow-x:auto;}
+    table {width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;min-width:790px;}
+    th {font-size:10px;font-weight:850;color:#8ba7b9;letter-spacing:.9px;text-align:right;text-transform:uppercase;border-bottom:1px solid #2c4357;background:#122438;padding:15px 16px;white-space:nowrap;}
+    th:nth-child(1),th:nth-child(2),td:nth-child(1),td:nth-child(2) {text-align:left;}
+    th:last-child,td:last-child {text-align:center;}
+    td {border-bottom:1px solid #24394b;padding:13px 16px;text-align:right;font-size:13px;color:#dce9ee;white-space:nowrap;}
+    tr:last-child td {border-bottom:0;}
+    tbody tr:hover {background:#173047;}
+    .country-name {font-weight:700;color:#f1fafb;}
+    .flag {display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border:1px solid #385367;border-radius:50%;background:#1e3549;color:#d9e9ef;font-size:11px;font-weight:850;margin-right:10px;}
+    .rank {color:#9eb0bf;font-weight:800;}
+    .score-cell {color:var(--accent);font-size:15px;font-weight:850;}
+    .score-bar {width:70px;height:4px;border-radius:99px;background:#2a4250;display:inline-block;vertical-align:middle;margin-left:9px;overflow:hidden;}
+    .score-bar i {display:block;height:100%;background:var(--accent);border-radius:99px;}
+    .compare-action {border:1px solid #3b5668;border-radius:7px;background:#193245;color:#c7dde6;padding:5px 10px;font-size:11px;font-weight:800;white-space:nowrap;}
+    .compare-action:hover {border-color:var(--accent);color:var(--accent);}
+    .compare-action.active {background:#20443e;border-color:#388776;color:var(--accent);}
+    .table-footer {display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:13px 20px;font-size:11px;color:#88a2b2;border-top:1px solid var(--line);}
+    .compare-pickers {display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:20px;border-bottom:1px solid #2b4356;}
+    .compare-pickers label {display:block;font-size:11px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.9px;margin-bottom:7px;}
+    .compare-pickers select {width:100%;font-size:13px;}
+    .compare-cards {display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:20px;}
+    .country-card {padding:19px;background:linear-gradient(145deg,#142b3d,#122334);border:1px solid #305165;border-radius:12px;min-width:0;}
+    .country-card .ctitle {font-size:14px;font-weight:850;display:flex;align-items:center;gap:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .country-card .position {color:#91aabd;font-size:11px;margin:9px 0 8px;}
+    .country-card .big-score {font-size:32px;letter-spacing:-1px;font-weight:850;color:var(--accent);line-height:1.2;}
+    .country-card .score-caption {text-transform:uppercase;letter-spacing:.85px;color:#92abb9;font-size:10px;font-weight:800;margin:6px 0 17px;}
+    .country-card .mini-row {display:flex;justify-content:space-between;gap:10px;font-size:12px;padding:7px 0;border-top:1px solid #2c4355;}
+    .country-card .mini-row span {color:#9db3c1;}.country-card .mini-row b {color:#e6f5f6;}
+    .bars-title {font-weight:800;font-size:14px;margin:0 0 17px;}
+    .bars-container {padding:5px 20px 23px;}
+    .bar-metric {margin:0 0 24px;}
+    .bar-header {display:flex;justify-content:space-between;color:#c3d4dc;font-size:12px;font-weight:700;margin-bottom:11px;}
+    .bar-item {display:grid;grid-template-columns:117px 1fr 58px;gap:11px;align-items:center;margin:9px 0;font-size:11px;color:var(--muted);}
+    .bar-track {height:10px;border-radius:10px;background:#253e52;overflow:hidden;}
+    .bar-fill {display:block;height:100%;border-radius:10px;}
+    .bar-value {text-align:right;color:#e6eff3;font-weight:750;}
+    .bar-item .label {overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    .method-grid {display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+    .method-card {background:#102132;border:1px solid #2d4658;border-radius:14px;padding:23px;}
+    .method-card h3 {margin:0 0 10px;font-size:16px;}
+    .method-card p {margin:0 0 10px;color:var(--muted);font-size:13px;line-height:1.75;}
+    .method-card p:last-child {margin-bottom:0;}
+    .formula {background:#0b1a2a;border:1px solid #305069;padding:13px 15px;border-radius:9px;color:#a9ffdf;font-weight:700;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;line-height:1.8;white-space:normal;overflow-wrap:anywhere;margin:13px 0;}
+    .list-note {list-style:none;margin:10px 0 0;padding:0;}
+    .list-note li {font-size:12px;color:#a6bdca;padding:9px 0;border-top:1px solid #284053;display:flex;justify-content:space-between;gap:10px;}
+    .list-note li b {color:#e9f7fa;font-weight:750;}
+    .sources {margin-top:15px;font-size:12px;display:grid;gap:8px;}
+    .sources a {width:fit-content;}
+    footer {border-top:1px solid #273d51;padding:28px 0 40px;color:#87a2b0;font-size:12px;}
+    .footer-inner {display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;}
+    .footnote {margin-top:15px;font-size:11px;color:#86a1af;line-height:1.75;max-width:1030px;}
+    .sr-only {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+    #loadError {display:none;margin:20px 0;background:#402b31;color:#ffd1d1;border:1px solid #a06766;padding:16px;border-radius:10px;}
+    @media(max-width:960px) { .hero {grid-template-columns:1fr;gap:27px;padding-top:50px}.snapshot{max-width:600px}.mode-layout{grid-template-columns:1fr;}.stats{grid-template-columns:repeat(2,1fr);margin-bottom:48px;}.country-card{padding:14px}.compare-cards{gap:8px;} }
+    @media(max-width:700px) { .wrap{width:min(100% - 28px,1200px)} .topbar-inner{min-height:65px}.brand-caption{font-size:9px} nav{gap:14px} nav a{font-size:11px} nav a:nth-child(3){display:none}.nav-status{display:none}h1{letter-spacing:-1.8px}.hero{padding:44px 0 20px}.hero-copy{font-size:14px}.stats{gap:8px}.stat{padding:13px}.stat b{font-size:18px}.panel-pad{padding:17px}.compare-pickers{grid-template-columns:1fr;padding:14px}.compare-cards{grid-template-columns:1fr;padding:14px}.country-card{padding:16px}.country-card .mini-row{display:inline-flex;width:49%;border:0}.country-card .position{margin-bottom:0}.bars-container{padding:8px 14px 20px}.bar-item{grid-template-columns:83px 1fr 47px;gap:7px}.method-grid{grid-template-columns:1fr}.table-tools{padding:13px}.searchbox{max-width:none}.table-actions{width:100%}.table-actions select{flex:1}.release-sep{display:none}.release-inner{gap:7px}.scatter{padding:8px}.scatter .axis-text{font-size:15px}.scatter .axis-label{font-size:16px}.scatter .plot-label{font-size:12px} }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <i class="fas fa-globe"></i>
-        </div>
-        <h1>Global Tax Performance Index (GTPI)</h1>
-        <p class="subtitle">Ranking countries by tax burden vs. government performance</p>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a href="#overview" class="brand" aria-label="GTPI home"><span class="brand-mark" aria-hidden="true">↗</span><span><span class="brand-name">GTPI<span style="color:var(--accent)">.</span></span><span class="brand-caption">Global Tax Performance Index</span></span></a>
+      <nav aria-label="Primary"><a href="#rankings">Rankings</a><a href="#compare">Compare</a><a href="#methodology">Methodology</a><span class="nav-status">2026 preview</span></nav>
     </div>
-    <div class="table-container">
-        <table id="taxTable">
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0)">Rank</th>
-                    <th onclick="sortTable(1)">Country</th>
-                    <th onclick="sortTable(2)">Tax-to-GDP (%)</th>
-                    <th onclick="sortTable(3)">HDI</th>
-                    <th onclick="sortTable(4)">Gov. Effectiveness</th>
-                    <th onclick="sortTable(5)">Index Score (GTPI)</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody"></tbody>
-        </table>
-    </div>
-    <footer style="text-align: center; margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
-        <p><strong>Formula:</strong> Index Score = (HDI + Government Effectiveness) / max(Tax-to-GDP / 100, 0.15)</p>
-        <p><strong>Data Sources:</strong> 
-            <a href="https://data.oecd.org/tax/tax-revenue.htm" target="_blank" style="color: #3498db;">OECD (Tax-to-GDP)</a> | 
-            <a href="https://hdr.undp.org/data-center/human-development-index" target="_blank" style="color: #3498db;">UNDP (HDI)</a> | 
-            <a href="https://info.worldbank.org/governance/wgi/" target="_blank" style="color: #3498db;">World Bank (Gov. Effectiveness)</a>
-        </p>
-        <p><strong>What’s This?</strong></p>
-        <ul style="list-style: none; padding: 0; max-width: 600px; margin: 10px auto; text-align: left;">
-            <li><strong>Tax-to-GDP (%):</strong> How much a country collects in taxes relative to its economy. Higher means a bigger tax burden.</li>
-            <li><strong>HDI:</strong> Human Development Index (0-1). Measures life expectancy, education, and income. Higher is better.</li>
-            <li><strong>Gov. Effectiveness:</strong> How well a government delivers (-2.5 to 2.5). Higher means more competent and reliable.</li>
-            <li><strong>Index Score:</strong> Our custom metric! Combines HDI and Gov. Effectiveness, divided by tax burden (min 15%). Higher = more bang for your tax buck.</li>
-        </ul>
-        <p>Built by DevDevDavid with help from Grok (xAI). Last updated: March 15, 2025.</p>
-    </footer>
-    <script>
-        const countryFlags = {
-            'Singapore': 'SG', 'Ireland': 'IE', 'Switzerland': 'CH', 'Chile': 'CL', 'Australia': 'AU',
-            'United States': 'US', 'New Zealand': 'NZ', 'Canada': 'CA', 'Norway': 'NO', 'China': 'CN',
-            'South Korea': 'KR', 'Japan': 'JP', 'United Kingdom': 'GB', 'Finland': 'FI', 'Netherlands': 'NL',
-            'Sweden': 'SE', 'Denmark': 'DK', 'Germany': 'DE', 'Estonia': 'EE', 'Portugal': 'PT',
-            'Spain': 'ES', 'France': 'FR', 'India': 'IN', 'Mexico': 'MX', 'Nigeria': 'NG',
-            'Italy': 'IT', 'Greece': 'GR', 'South Africa': 'ZA', 'Brazil': 'BR', 'Russia': 'RU',
-            'Belgium': 'BE', 'Austria': 'AT', 'Poland': 'PL', 'Czech Republic': 'CZ', 'Hungary': 'HU',
-            'Slovenia': 'SI', 'Latvia': 'LV', 'Lithuania': 'LT', 'Slovakia': 'SK', 'Croatia': 'HR',
-            'Turkey': 'TR', 'Argentina': 'AR', 'Colombia': 'CO', 'Peru': 'PE', 'Thailand': 'TH',
-            'Malaysia': 'MY', 'Indonesia': 'ID', 'Philippines': 'PH', 'Vietnam': 'VN', 'Bangladesh': 'BD'
-        };
-
-        let sortDirection = 5;
-        let sortAsc = false; // Set to false for descending order (best to worst)
-
-        fetch('data.csv')
-            .then(response => response.text())
-            .then(data => {
-                const rows = data.trim().split('\n').slice(1);
-                const tbody = document.getElementById('tableBody');
-                const scores = rows.map(row => parseFloat(row.split(',')[5]));
-                const sortedScores = [...scores].sort((a, b) => a - b);
-                const q1 = sortedScores[Math.floor(sortedScores.length * 0.25)];
-                const q2 = sortedScores[Math.floor(sortedScores.length * 0.5)];
-                const q3 = sortedScores[Math.floor(sortedScores.length * 0.75)];
-
-                rows.forEach(row => {
-                    const cols = row.split(',');
-                    const tr = document.createElement('tr');
-                    cols.forEach((col, idx) => {
-                        const td = document.createElement('td');
-                        if (idx === 1) {
-                            const country = col.trim();
-                            const countryCode = countryFlags[country];
-                            if (countryCode) {
-                                const img = document.createElement('img');
-                                img.src = `https://flagcdn.com/16x12/${countryCode.toLowerCase()}.png`;
-                                img.alt = `${country} flag`;
-                                td.appendChild(img);
-                                td.append(country);
-                            } else {
-                                console.log(`No flag for: ${country}`);
-                                td.textContent = country;
-                            }
-                        } else {
-                            td.textContent = col;
-                        }
-                        if (idx === 5) {
-                            const score = parseFloat(col);
-                            if (score >= q3) td.classList.add('green');
-                            else if (score >= q2) td.classList.add('yellow');
-                            else if (score >= q1) td.classList.add('orange');
-                            else td.classList.add('red');
-                        }
-                        tr.appendChild(td);
-                    });
-                    tbody.appendChild(tr);
-                });
-                // Sort by Index Score (GTPI) descending on load (best to worst)
-                sortTable(5);
-            })
-            .catch(error => console.error('Error fetching CSV:', error));
-
-        function sortTable(col) {
-            const table = document.getElementById('taxTable');
-            const tbody = table.querySelector('tbody');
-            const rows = Array.from(tbody.querySelectorAll('tr'));
-
-            if (sortDirection === col) sortAsc = !sortAsc;
-            else { 
-                sortDirection = col; 
-                sortAsc = (col === 5) ? false : true; // Default descending for Index Score (GTPI), ascending for others
-            }
-
-            rows.sort((a, b) => {
-                let aVal = a.cells[col].textContent;
-                let bVal = b.cells[col].textContent;
-                if (col === 1) {
-                    aVal = a.cells[col].lastChild.textContent.trim();
-                    bVal = b.cells[col].lastChild.textContent.trim();
-                    return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-                }
-                if (col > 1) {
-                    aVal = parseFloat(aVal);
-                    bVal = parseFloat(bVal);
-                    // When sortAsc is false, sort descending (best to worst, highest to lowest)
-                    return sortAsc ? bVal - aVal : aVal - bVal; // Fixed: flipped the comparison logic
-                }
-                return sortAsc ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-            });
-
-            rows.forEach((row, idx) => row.cells[0].textContent = idx + 1);
-            tbody.innerHTML = '';
-            rows.forEach(row => tbody.appendChild(row));
-        }
-    </script>
+  </header>
+  <div class="release-banner" role="note">
+    <div class="wrap release-inner"><strong>Upcoming dataset releases</strong><span>UNDP Human Development Report: <b>Dec 1, 2026</b></span><span class="release-sep">·</span><span>OECD Revenue Statistics: <b>Dec 10, 2026</b></span><span class="release-sep">·</span><span>Not yet incorporated</span></div>
+  </div>
+  <main class="wrap">
+    <section class="hero" id="overview" aria-labelledby="heroTitle">
+      <div><div class="eyebrow">2026 preview <span style="color:#607f8d;margin:0 8px">/</span> Updated November 13, 2026</div>
+        <h1 id="heroTitle">How much <em>value</em> does a country deliver for its taxes?</h1>
+        <p class="hero-copy">Explore the relationship between taxes, human development and public-sector effectiveness across 50 countries. Compare the data, challenge the assumptions and see how the rankings change.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#rankings">Explore the rankings <span aria-hidden="true">→</span></a><a class="btn" href="#compare">Compare countries <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <aside class="snapshot" aria-label="Dataset snapshot"><div class="snapshot-top"><span>Current data snapshot</span><span class="snapshot-badge">Mixed-year</span></div><strong class="big">50 economies</strong><p>Same coverage as the original GTPI, with new HDI and governance values.</p><div class="snapshot-list"><div class="snapshot-line"><span>Human development</span><b>2023 data · UNDP 2025</b></div><div class="snapshot-line"><span>Government effectiveness</span><b>2025 data · WGI 2026</b></div><div class="snapshot-line"><span>Tax-to-GDP</span><b style="color:var(--gold)">Original GTPI data · legacy</b></div></div></aside>
+    </section>
+    <div class="stats" aria-label="Data coverage statistics"><div class="stat"><small>Countries tracked</small><b id="statCountries">50</b><span>Original GTPI coverage</span></div><div class="stat"><small>HDI observations</small><b>2023</b><span>Published by UNDP in 2025</span></div><div class="stat"><small>Governance observations</small><b>2025</b><span>World Bank 2026 release</span></div><div class="stat"><small>Tax observations</small><b>Legacy</b><span>Original source years unverified</span></div></div>
+    <section id="rankings" aria-labelledby="rankingTitle"><div class="section-top"><div><div class="kicker">01 / Explore the data</div><h2 id="rankingTitle">The rankings, rethought.</h2><p class="section-description">Scores are computed live from the CSV, never copied from the old hardcoded ranking. Change the model or weights to explore different answers.</p></div></div>
+      <div class="panel panel-pad" style="margin-bottom:14px">
+        <div class="mode-layout"><div><div class="eyebrow" style="margin-bottom:8px">Ranking model</div><div class="segmented" role="group" aria-label="Ranking model"><button type="button" data-mode="preview" aria-pressed="true">2026 preview</button><button type="button" data-mode="classic" aria-pressed="false">Classic recalculated</button></div></div><div class="weight-wrap" id="weightWrap"><label for="weightRange">Outcome weighting</label><input id="weightRange" type="range" min="0" max="100" value="50" step="5"><strong id="weightValue">50% HDI · 50% GE</strong></div></div>
+        <div class="quality-strip" id="modelNote"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"/><path d="M12 9v5m0 4h.01"/></svg><span><strong>Preview, not a final 2026 release.</strong> HDI and governance have been refreshed, but tax-to-GDP values are carried forward from your original 2025 CSV. Their observation years weren't documented. Interpret cross-country comparisons with that limitation in mind.</span></div>
+        <div class="scatter"><div class="chart-summary"><h3 id="scatterTitle">Tax collection vs. outcome quality</h3><span class="tiny-hint">Select a dot to swap that country into the comparison</span></div><div id="scatterChart" role="img" aria-label="Scatter plot of original tax to GDP percentage versus weighted 2026 preview outcome score"></div><div class="scatter-caption"><span>Each dot represents a country. Top left is lower tax collection and higher outcomes.</span><span id="scatterAxisNote">Outcome score: 50% HDI / 50% government effectiveness</span></div></div>
+      </div>
+      <div class="panel"><div class="table-tools"><div class="searchbox"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16 16 5 5"/></svg><label for="searchCountry" class="sr-only">Search countries</label><input id="searchCountry" placeholder="Search 50 countries..." autocomplete="off"></div><div class="table-actions"><label class="sr-only" for="sortBy">Sort rankings</label><select id="sortBy" class="select"><option value="score">Sort: GTPI score</option><option value="taxAsc">Tax: low to high</option><option value="taxDesc">Tax: high to low</option><option value="hdi">HDI: high to low</option><option value="gov">Gov. effectiveness</option><option value="name">Country A–Z</option></select><button id="exportCsv" class="btn" type="button">↓ Export CSV</button></div></div><div class="table-wrap"><table aria-label="Global Tax Performance Index country rankings"><thead><tr><th scope="col">Rank</th><th scope="col">Country</th><th scope="col">GTPI score</th><th scope="col" title="Taxes collected as a percentage of GDP; data carried forward from original repository">Tax / GDP*</th><th scope="col" id="tableHdiHead" title="UNDP Human Development Index, 2023 observations">HDI '23</th><th scope="col" id="tableGovHead" title="World Bank Government Effectiveness 0–100 absolute score, 2025">GE '25</th><th scope="col">Compare</th></tr></thead><tbody id="rankingBody"><tr><td colspan="7" style="text-align:center;padding:36px">Loading data.csv…</td></tr></tbody></table></div><div class="table-footer"><span id="resultsCount">Loading data…</span><span>* Tax figures are from the original repository and have not been refreshed.</span></div></div>
+      <div id="loadError" role="alert"></div>
+    </section>
+    <section id="compare" aria-labelledby="compareTitle"><div class="section-top"><div><div class="kicker">02 / Side by side</div><h2 id="compareTitle">Compare what matters.</h2><p class="section-description">Select up to three countries to inspect their inputs and their score under the currently selected ranking model.</p></div></div><div class="panel"><div class="compare-pickers" id="comparePickers"><div><label>Country 1</label><select class="select" disabled><option>Loading…</option></select></div><div><label>Country 2</label><select class="select" disabled><option>Loading…</option></select></div><div><label>Country 3</label><select class="select" disabled><option>Loading…</option></select></div></div><div class="compare-cards" id="compareCards"></div><div class="bars-container"><h3 class="bars-title">Metric breakdown</h3><div id="compareBars"></div><p class="tiny-hint" id="compareFootnote">Bar lengths use the same scale within each metric, not across different metrics.</p></div></div></section>
+    <section id="methodology" aria-labelledby="methodTitle"><div class="section-top"><div><div class="kicker">03 / The methodology</div><h2 id="methodTitle">Show your work.</h2><p class="section-description">GTPI is an exploratory index. Its formula is a choice, not a universal measure of government efficiency.</p></div></div>
+      <div class="method-grid"><article class="method-card"><h3>2026 preview score</h3><p>First put human development and government effectiveness on comparable 0–100 scales, then combine them using adjustable weights. Divide by the tax-to-GDP percentage (with a minimum denominator of 15 percentage points).</p><div class="formula">Outcome = w × (HDI × 100) + (1 − w) × GE score<br>GTPI = Outcome / max(Tax-to-GDP %, 15)</div><p>Default: <b>50% HDI / 50% GE</b>. A higher result indicates higher outcomes relative to collected taxes <em>under this model</em>. The 15% floor is an inherited design choice, not a measured threshold.</p></article>
+      <article class="method-card"><h3>Classic, recalculated</h3><p>For a comparison with the original design, use the original CSV's archived HDI, archived governance <em>estimate</em>, and tax-to-GDP. Recalculate rather than trusting the stored scores or ranks, which contain inconsistencies.</p><div class="formula">Classic = (Original HDI + Original GE estimate)<br>÷ max(Original Tax-to-GDP % / 100, 0.15)</div><p>Classic and preview scores are on <b>different scales</b> and should never be compared directly. The historic estimate scale can produce negative classic scores.</p></article>
+      <article class="method-card"><h3>Sources and data years</h3><p>New measurements are included for two of the three indicators. The tax data remain historical until a consistent, documented replacement series is prepared.</p><ul class="list-note"><li><span>UNDP Human Development Report 2025</span><b>HDI for 2023</b></li><li><span>World Bank WGI 2026 update</span><b>GE for 2025</b></li><li><span>GTPI original March 2025 CSV</span><b>Tax % · year not recorded</b></li></ul><div class="sources"><a href="https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Statistical_Annex_HDI_Table.pdf" target="_blank" rel="noopener noreferrer">UNDP: 2025 HDI statistical annex ↗</a><a href="https://data.worldbank.org/indicator/GOV_WGI_GE_SC" target="_blank" rel="noopener noreferrer">World Bank: Government Effectiveness 0–100 ↗</a><a href="https://github.com/Dalusion/GTPI/blob/main/data.csv" target="_blank" rel="noopener noreferrer">Original GTPI dataset ↗</a></div></article>
+      <article class="method-card"><h3>What the score does not mean</h3><p>Taxes collected as a share of GDP are <b>not the same as government spending</b>, or the tax bill of a typical household. HDI reflects income, health and education, including influences beyond government policy. WGI is based on perceptions and estimates.</p><p>Countries differ in resources, demographics, economic structures, public services and non-tax revenue. These rankings are useful for asking questions, but do not establish causation or prove that a particular country's government spends more efficiently.</p><p>More complete future editions should document tax observation years, harmonize country coverage, assess score sensitivity, and consider spending-based alternatives.</p></article></div>
+    </section>
+  </main>
+  <footer><div class="wrap"><div class="footer-inner"><span><b style="color:var(--text)">GTPI 2026 Preview</b> · An independent exploratory project</span><span>Originally built by DevDevDavid · <a href="https://github.com/Dalusion/GTPI" target="_blank" rel="noopener noreferrer">GitHub repository ↗</a></span></div><p class="footnote">Data updated November 13, 2026. HDI values come from the UNDP 2025 report (2023 observations). Government Effectiveness absolute scores come from the World Bank's 2026 WGI release (2025 observations). All tax-to-GDP values are carried over from the original GTPI CSV without independently verified observation years. The 2026 HDI and OECD releases listed above are upcoming as of this publication date. Coverage is 50 selected economies, not the whole world.</p></div></footer>
+  <script>
+  (() => {
+    'use strict';
+    const elements = {
+      table: document.getElementById('rankingBody'), search: document.getElementById('searchCountry'), sort: document.getElementById('sortBy'),
+      weight: document.getElementById('weightRange'), weightText: document.getElementById('weightValue'), weightWrap: document.getElementById('weightWrap'),
+      modeButtons: Array.from(document.querySelectorAll('[data-mode]')), note: document.getElementById('modelNote'),
+      scatter: document.getElementById('scatterChart'), scatterNote: document.getElementById('scatterAxisNote'), scatterTitle: document.getElementById('scatterTitle'),
+      hdiHead: document.getElementById('tableHdiHead'), govHead: document.getElementById('tableGovHead'),
+      count: document.getElementById('resultsCount'), error: document.getElementById('loadError'), pickers: document.getElementById('comparePickers'),
+      cards: document.getElementById('compareCards'), bars: document.getElementById('compareBars'), exportButton: document.getElementById('exportCsv')
+    };
+    const state = {countries:[], mode:'preview', hdiWeight:50, query:'', sort:'score', selected:['Singapore','Canada','Denmark']};
+    const number = (n,decimals=2) => Number.isFinite(n) ? n.toFixed(decimals) : '—';
+    const countryByName = name => state.countries.find(c=>c.country===name);
+    const outcome = c => (state.hdiWeight * c.hdi * 100 + (100-state.hdiWeight)*c.gov) / 100;
+    const score = c => state.mode === 'classic' ? (c.originalHdi+c.originalGov)/Math.max(c.tax/100,.15) : outcome(c)/Math.max(c.tax,15);
+    const countryCode = c => c ? c.iso : '';
+    const element = (tag,className,textValue) => {const el=document.createElement(tag);if(className)el.className=className;if(textValue!==undefined)el.textContent=String(textValue);return el;};
+    const fmtScore = c => number(score(c),2);
+    const ranking = () => [...state.countries].sort((a,b)=>score(b)-score(a)||a.country.localeCompare(b.country));
+    const rankOf = (country, ranked) => ranked.findIndex(c=>c.country===country)+1;
+    // Tiny self-contained CSV reader. Supports quoted fields and CRLF; no external libraries.
+    function parseCSV(text) {
+      const records=[];let row=[],field='',quoted=false;
+      for(let i=0;i<text.length;i++) {const ch=text[i];if(quoted) {if(ch==='"'&&text[i+1]==='"'){field+='"';i++;}else if(ch==='"'){quoted=false;}else{field+=ch;}}else if(ch==='"'){quoted=true;}else if(ch===','){row.push(field.trim());field='';}else if(ch==='\n'){row.push(field.trim());if(row.some(Boolean))records.push(row);row=[];field='';}else if(ch!=='\r'){field+=ch;}}
+      row.push(field.trim());if(row.some(Boolean))records.push(row);return records;
+    }
+    function decodeCSV(text){
+      const rows=parseCSV(text.replace(/^\ufeff/,''));const headers=rows.shift();
+      const names=['Country','ISO2','TaxToGDP_LegacyPct','HDI_2023','GovEffectiveness_2025_Score','OriginalHDI','OriginalGovEffectiveness_Estimate'];
+      if(!headers||names.some(name=>!headers.includes(name)))throw new Error('data.csv is missing a required column. Replace it with the included 2026 edition.');
+      const i=Object.fromEntries(names.map(name=>[name,headers.indexOf(name)]));
+      const countries=rows.map((row,n)=>({country:row[i.Country],iso:row[i.ISO2],tax:Number(row[i.TaxToGDP_LegacyPct]),hdi:Number(row[i.HDI_2023]),gov:Number(row[i.GovEffectiveness_2025_Score]),originalHdi:Number(row[i.OriginalHDI]),originalGov:Number(row[i.OriginalGovEffectiveness_Estimate])}));
+      if(!countries.length)throw new Error('data.csv has no countries.');
+      if(countries.some(c=>!c.country||!c.iso||![c.tax,c.hdi,c.gov,c.originalHdi,c.originalGov].every(Number.isFinite)||c.hdi<0||c.hdi>1||c.gov<0||c.gov>100||c.tax<=0))throw new Error('Some values in data.csv are missing or invalid.');
+      if(new Set(countries.map(c=>c.country)).size!==countries.length)throw new Error('Duplicate country found in data.csv.');
+      return countries;
+    }
+    function setMode(next){if(next!== 'classic'&&next!=='preview')return;state.mode=next;elements.modeButtons.forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.mode===next)));elements.weight.disabled=next==='classic';elements.weightWrap.classList.toggle('disabled',next==='classic');elements.note.innerHTML=next==='preview' ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"/><path d="M12 9v5m0 4h.01"/></svg><span><strong>Preview, not a final 2026 release.</strong> HDI and governance have been refreshed, but tax-to-GDP values are carried forward from the original 2025 CSV. Their observation years were not documented.</span>' : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 2 21h20L12 3z"/><path d="M12 9v5m0 4h.01"/></svg><span><strong>Classic model (recalculated).</strong> Uses the original HDI and government-effectiveness estimate alongside the original tax data. Original hardcoded scores have been replaced by formula results. Classic and preview scores use different scales.</span>';renderAll();}
+    function orderedRows(){const rows=ranking().filter(c=>c.country.toLowerCase().includes(state.query));switch(state.sort){case 'taxAsc':rows.sort((a,b)=>a.tax-b.tax);break;case 'taxDesc':rows.sort((a,b)=>b.tax-a.tax);break;case 'hdi':rows.sort((a,b)=>(state.mode==='classic'?b.originalHdi-a.originalHdi:b.hdi-a.hdi));break;case 'gov':rows.sort((a,b)=>(state.mode==='classic'?b.originalGov-a.originalGov:b.gov-a.gov));break;case 'name':rows.sort((a,b)=>a.country.localeCompare(b.country));break;}return rows;}
+    function renderTable(){
+      const rows=orderedRows(),ranked=ranking(),max=Math.max(...ranked.map(score),0.001);elements.table.replaceChildren();
+      elements.hdiHead.textContent=state.mode==='classic'?'HDI original':"HDI '23";
+      elements.hdiHead.title=state.mode==='classic'?'Original GTPI Human Development Index value':'UNDP Human Development Index, 2023 observations';
+      elements.govHead.textContent=state.mode==='classic'?'GE original':"GE '25";
+      elements.govHead.title=state.mode==='classic'?'Original GTPI Government Effectiveness estimate':'World Bank Government Effectiveness 0–100 absolute score, 2025';
+      if(!rows.length){const tr=element('tr');const td=element('td','', 'No countries match your search.');td.colSpan=7;td.style.textAlign='center';td.style.padding='34px';tr.append(td);elements.table.append(tr);}
+      for(const c of rows){
+        const tr=element('tr');const rank=element('td','rank','#'+rankOf(c.country,ranked));tr.append(rank);
+        const name=element('td');name.append(element('span','flag',c.iso),element('span','country-name',c.country));tr.append(name);
+        const scoreTd=element('td','score-cell',fmtScore(c));const scoreBar=element('span','score-bar');const fill=element('i');fill.style.width=(Math.max(0,score(c))/max*100).toFixed(1)+'%';scoreBar.append(fill);scoreTd.append(scoreBar);tr.append(scoreTd);
+        tr.append(element('td','',number(c.tax,1)+'%'),element('td','',number(state.mode==='classic'?c.originalHdi:c.hdi,3)),element('td','',number(state.mode==='classic'?c.originalGov:c.gov,state.mode==='classic'?2:1)));
+        const actionTd=element('td');const selected=state.selected.includes(c.country);const action=element('button','compare-action'+(selected?' active':''),selected?'✓ Selected':'+ Compare');action.type='button';action.dataset.country=c.country;action.title=selected?'Selected for comparison':'Replaces the third comparison slot';action.setAttribute('aria-label',(selected?'Selected: ':'Compare ')+c.country);action.disabled=selected;actionTd.append(action);tr.append(actionTd);elements.table.append(tr);
+      }
+      elements.count.textContent=rows.length+' of '+state.countries.length+' countries · '+(state.mode==='classic'?'Classic scores recalculated':'2026 preview scores');
+    }
+    function renderCompare(){
+      const rank=ranking();elements.pickers.replaceChildren();elements.cards.replaceChildren();elements.bars.replaceChildren();
+      state.selected.forEach((name,idx)=>{
+        const block=element('div');const label=element('label','',`Country ${idx+1}`);const id=`compareSelect${idx}`;label.htmlFor=id;const select=element('select','select');select.id=id;select.dataset.index=idx;
+        for(const c of [...state.countries].sort((a,b)=>a.country.localeCompare(b.country))){const op=element('option','',c.country);op.value=c.country;op.selected=c.country===name;op.disabled=c.country!==name&&state.selected.includes(c.country);select.append(op);}block.append(label,select);elements.pickers.append(block);
+        const c=countryByName(name);if(!c)return;const card=element('article','country-card');const heading=element('div','ctitle');heading.append(element('span','flag',countryCode(c)),element('span','',c.country));card.append(heading,element('div','position',`#${rankOf(name,rank)} of ${state.countries.length} · ${state.mode==='classic'?'classic':'preview'} ranking`),element('div','big-score',fmtScore(c)),element('div','score-caption','GTPI index score'));
+        for(const [label,value] of [['Tax / GDP (legacy)',number(c.tax,1)+'%'],[state.mode==='classic'?'HDI (original)':'HDI (2023)',number(state.mode==='classic'?c.originalHdi:c.hdi,3)],['Gov. effectiveness',state.mode==='classic'?number(c.originalGov,2)+' estimate':number(c.gov,1)+' / 100']]){const line=element('div','mini-row');line.append(element('span','',label),element('b','',value));card.append(line);}elements.cards.append(card);
+      });
+      const metrics=[{name:'GTPI score (within selected model)',value:score,cap:Math.max(...state.countries.map(score),.001),print:c=>fmtScore(c)},{name:'Tax collection / GDP (legacy)',value:c=>c.tax,cap:50,print:c=>number(c.tax,1)+'%'},{name:state.mode==='classic'?'HDI (original)':'HDI (2023)',value:c=>state.mode==='classic'?c.originalHdi:c.hdi,cap:1,print:c=>number(state.mode==='classic'?c.originalHdi:c.hdi,3)},{name:state.mode==='classic'?'Gov. effectiveness (original estimate)':'Government effectiveness (2025)',value:c=>state.mode==='classic'?(c.originalGov+2.5):c.gov,cap:state.mode==='classic'?5:100,print:c=>state.mode==='classic'?number(c.originalGov,2):number(c.gov,1)}];
+      const colors=['#67e8c9','#78aefa','#ffd38d'];
+      for(const metric of metrics){const group=element('div','bar-metric');group.append(element('div','bar-header',metric.name));state.selected.forEach((name,idx)=>{const c=countryByName(name);if(!c)return;const row=element('div','bar-item');row.append(element('div','label',name));const track=element('div','bar-track'),fill=element('span','bar-fill');fill.style.width=(Math.min(100,Math.max(0,metric.value(c)/metric.cap*100))).toFixed(1)+'%';fill.style.background=colors[idx];track.append(fill);row.append(track,element('div','bar-value',metric.print(c)));group.append(row);});elements.bars.append(group);}
+    }
+    function renderScatter(){
+      const NS='http://www.w3.org/2000/svg',W=960,H=344,L=62,R=22,T=21,B=52,plotW=W-L-R,plotH=H-T-B;
+      const isClassic=state.mode==='classic';
+      // Same chart concept for both models, but with each model's actual numerator on its own scale.
+      // Classic uses the archived HDI + GE estimate (can be negative); preview uses normalized 0–100 outcomes.
+      const outcomeValue=c=>isClassic?c.originalHdi+c.originalGov:outcome(c);
+      const yValues=state.countries.map(outcomeValue);
+      const yStep=isClassic?.5:10;
+      const yMin=isClassic?Math.floor(Math.min(...yValues)/yStep)*yStep:30;
+      const yMax=isClassic?Math.ceil(Math.max(...yValues)/yStep)*yStep:100;
+      const yLabel=isClassic?'Original HDI + GE estimate':'Weighted outcome (0–100)';
+      const shortLabel=isClassic?'classic unnormalized outcome':'preview normalized outcome';
+      const svg=document.createElementNS(NS,'svg');svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('aria-hidden','true');
+      const put=(tag,attrs,parent=svg,txt)=>{const n=document.createElementNS(NS,tag);for(const [k,v] of Object.entries(attrs))n.setAttribute(k,String(v));if(txt!==undefined)n.textContent=String(txt);parent.append(n);return n;};
+      const xp=x=>L+(x/50)*plotW,yp=y=>T+(1-(y-yMin)/(yMax-yMin))*plotH;
+      for(let x=0;x<=50;x+=10){put('line',{x1:xp(x),x2:xp(x),y1:T,y2:H-B,class:'gridline'});put('text',{x:xp(x),y:H-B+23,'text-anchor':'middle',class:'axis-text'},svg,x+'%');}
+      for(let i=0;i<=Math.round((yMax-yMin)/yStep);i++){
+        const y=Number((yMin+i*yStep).toFixed(2));
+        put('line',{x1:L,x2:W-R,y1:yp(y),y2:yp(y),class:'gridline'});
+        put('text',{x:L-12,y:yp(y)+4,'text-anchor':'end',class:'axis-text'},svg,isClassic?number(y,1):String(y));
+      }
+      put('text',{x:L+plotW/2,y:H-4,'text-anchor':'middle',class:'axis-label'},svg,'Tax / GDP % (original GTPI data)');
+      put('text',{x:18,y:T+plotH/2,transform:`rotate(-90 18 ${T+plotH/2})`,'text-anchor':'middle',class:'axis-label'},svg,yLabel);
+      for(const c of [...state.countries].sort((a,b)=>Number(state.selected.includes(a.country))-Number(state.selected.includes(b.country)))){
+        const val=outcomeValue(c),x=xp(c.tax),y=yp(val);
+        const point=put('circle',{cx:x,cy:y,r:state.selected.includes(c.country)?7:5,tabindex:0,role:'button',class:'dot'+(state.selected.includes(c.country)?' selected':''), 'aria-label':`${c.country}: tax ${number(c.tax,1)} percent, ${shortLabel} ${number(val,isClassic?3:1)}. Compare.`});
+        put('title',{},point,`${c.country}: Tax ${number(c.tax,1)}%, ${shortLabel} ${number(val,isClassic?3:1)}. Click to compare.`);
+        point.addEventListener('click',()=>selectCountry(c.country));point.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectCountry(c.country);}});
+      }
+      for(const name of ['Singapore','Canada','Denmark']){
+        const c=countryByName(name);if(!c)continue;
+        const x=xp(c.tax),y=yp(outcomeValue(c)),offset=name==='Singapore'?11:-11;
+        put('text',{x:x+10,y:y+offset,'text-anchor':'start',class:'plot-label'},svg,name);
+      }
+      elements.scatter.replaceChildren(svg);
+      elements.scatter.setAttribute('aria-label',`Scatter plot of tax to GDP percentage versus ${shortLabel}`);
+      elements.scatterTitle.textContent=isClassic?'Tax collection vs. original outcomes':'Tax collection vs. outcome quality';
+      elements.scatterNote.textContent=isClassic
+        ?'Classic outcome: original HDI + original GE estimate (not normalized; can be negative)'
+        :`Outcome score: ${state.hdiWeight}% HDI / ${100-state.hdiWeight}% government effectiveness (2026 preview data)`;
+    }
+    function selectCountry(country){if(state.selected.includes(country))document.getElementById('compare').scrollIntoView({behavior:'smooth'});else{state.selected[2]=country;renderAll();document.getElementById('compare').scrollIntoView({behavior:'smooth'});}}
+    function renderAll(){if(!state.countries.length)return;renderTable();renderCompare();renderScatter();}
+    function csvValue(value){const str=String(value);return /[",\n]/.test(str)?'"'+str.replaceAll('"','""')+'"':str;}
+    function exportCurrent(){const rows=orderedRows(),ranked=ranking();const header=['GTPI_Rank','Country','ISO2','Model','GTPI_Score','TaxToGDP_LegacyPct','HDI_2023','GovernmentEffectiveness_2025_0to100','HDI_Original','GovEstimate_Original','HDI_Weight'];const cells=[header,...rows.map(c=>[rankOf(c.country,ranked),c.country,c.iso,state.mode,fmtScore(c),c.tax,c.hdi,c.gov,c.originalHdi,c.originalGov,state.mode==='preview'?state.hdiWeight:'N/A'])];const csv=cells.map(row=>row.map(csvValue).join(',')).join('\r\n')+'\r\n';const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='GTPI-2026-'+state.mode+'-ranking.csv';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);}
+    elements.modeButtons.forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+    elements.weight.addEventListener('input',e=>{state.hdiWeight=Number(e.target.value);elements.weightText.textContent=`${state.hdiWeight}% HDI · ${100-state.hdiWeight}% GE`;renderAll();});
+    elements.search.addEventListener('input',e=>{state.query=e.target.value.trim().toLowerCase();renderTable();});
+    elements.sort.addEventListener('change',e=>{state.sort=e.target.value;renderTable();});
+    elements.exportButton.addEventListener('click',exportCurrent);
+    elements.table.addEventListener('click',e=>{const button=e.target.closest('button[data-country]');if(button)selectCountry(button.dataset.country);});
+    elements.pickers.addEventListener('change',e=>{const idx=Number(e.target.dataset.index);const value=e.target.value;if(!Number.isInteger(idx)||idx<0||idx>2||state.selected.includes(value))return;state.selected[idx]=value;renderAll();});
+    fetch('./data.csv',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('Could not load data.csv (HTTP '+response.status+').');return response.text();}).then(text=>{state.countries=decodeCSV(text);document.getElementById('statCountries').textContent=state.countries.length;state.selected=state.selected.filter(name=>countryByName(name));while(state.selected.length<Math.min(3,state.countries.length))state.selected.push(state.countries.find(c=>!state.selected.includes(c.country)).country);renderAll();}).catch(error=>{elements.table.replaceChildren();elements.error.style.display='block';elements.error.textContent=`Unable to load GTPI data: ${error.message} Test using a local web server (see README.md), not by double-clicking index.html, and keep data.csv beside index.html.`;elements.count.textContent='Dataset unavailable';console.error(error);});
+  })();
+  </script>
 </body>
 </html>
